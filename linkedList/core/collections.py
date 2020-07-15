@@ -20,20 +20,25 @@ class Queue:
 
 class LinkedList:
     def __init__(self, *elements):
-        self.head = Node()
-        self.lastNode = self.head
+        self.head = None
+        self.lastNode = None
+
         for e in elements:
             self.add(e)
 
     def add(self, val):
         newNode = Node(val)
-        self.lastNode.next = newNode
-        self.firstNode = self.head.next
-        self.lastNode = self.lastNode.next
+
+        if self.head == None:
+            self.head = newNode
+        else:
+            self.lastNode.next = newNode
+
+        self.lastNode = newNode
         return newNode
 
     def print(self):
-        n = self.firstNode
+        n = self.head
 
         while n:
             print(n.val)

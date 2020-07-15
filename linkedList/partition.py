@@ -8,15 +8,15 @@ def partition(x, l):
 
     current = l.head
 
-    while current.next:
-        current = current.next
-
+    while current:
         if current.val < x:
             left.add(current.val)
         else:
             right.add(current.val)
 
-    left.lastNode.next = right.head.next
+        current = current.next
+
+    left.lastNode.next = right.head
 
     return left
 

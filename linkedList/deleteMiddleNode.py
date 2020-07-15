@@ -11,7 +11,7 @@ def list_with_middle_node(which, *elements):
     middle_node = None
 
     l = LinkedList(*elements)
-    current = l.head.next
+    current = l.head
 
     for i in range(len(elements)):
         if i == which:

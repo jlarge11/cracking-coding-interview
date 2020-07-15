@@ -4,35 +4,37 @@ from core.collections import LinkedList
 
 
 def sum_lists(list1, list2):
+    current1 = list1.head
+    current2 = list2.head
+    result = LinkedList()
 
-    current1 = l.head
-    current2 = l.head
-    result = LinkedList(0)
-    result_current = result.head
+    carry = 0
 
-    while current1.next or current2.next:
-        current1 = current1.next
-        current2 = current1.next
-        val1 = 0
-        val2 = 0
+    while current1 or current2 or carry:
+        unit_val = 0
 
         if current1:
-            val1 = current1.val
+            unit_val += current1.val
+            current1 = current1.next
 
         if current2:
-            val2 = current2.val
+            unit_val += current2.val
+            current2 = current2.next
 
-        mini_sum = val1 + val2
-        carry = mini_sum / 10
-        mini_val = mini_sum % 10
+        unit_val += carry
 
-        result.add(mini_val)
+        carry = unit_val // 10
+        unit_val %= 10
+
+        result.add(unit_val)
+
+    return result
 
 
-assert partition(5, LinkedList(3, 7, 8, 1, 4, 5, 9)).equals(
-    LinkedList(3, 1, 4, 7, 8, 5, 9))
+assert sum_lists(LinkedList(7, 1, 6), LinkedList(
+    5, 9, 2)).equals(LinkedList(2, 1, 9))
 
-assert partition(5, LinkedList(3, 7, 8, 1, 4, 9)).equals(
-    LinkedList(3, 1, 4, 7, 8, 9))
+assert sum_lists(LinkedList(7, 1, 6), LinkedList(
+    5, 9, 8)).equals(LinkedList(2, 1, 5, 1))
 
 print('Passed!')

@@ -3,17 +3,17 @@ from core.collections import LinkedList
 
 
 def remove_dups(l):
-    known_values = set()
+    known_values = {l.head.val}
 
     current = l.head
-    known_values.add(current.val)
 
     while(current.next):
         if current.next.val in known_values:
-            current.remove_next()
+            current.next = current.next.next
         else:
             known_values.add(current.next.val)
-            current = current.next
+
+        current = current.next
 
 
 def test(initial, expected):
