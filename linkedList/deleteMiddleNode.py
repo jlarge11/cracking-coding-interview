@@ -1,17 +1,10 @@
-# O(N)
+# O(1)
 from core.collections import LinkedList
 
 
 def delete_middle(n):
-    prev = None
-    current = n
-
-    while(current.next):
-        current.val = current.next.val
-        prev = current
-        current = current.next
-
-    prev.remove_next()
+    n.val = n.next.val
+    n.next = n.next.next
 
 
 def list_with_middle_node(which, *elements):
